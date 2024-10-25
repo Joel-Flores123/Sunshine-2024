@@ -101,7 +101,7 @@ in time for the next malloc and have it return an arbitrary address that we can 
 If we take a look at gdb we can see that our allocated chunk is at 0x21f8a2a0 (size 0x20), we know this because we 
 allocated 0x10 size and malloc also adds about 0x10 for metadata like previous size and chunk size. We also know that
 0x21f89000 is the base of the heap and from the image we can see that the tcache counts start at 0x21f89010 and the tcache 
-entries start at 0x21f89090 after some trial and error.![tache](pics/tcachetable.png)
+entries start at 0x21f89090 after some trial and error.![tache](pics/tachetable.png)
 
 So first we do some math to figure out the negative offsets we need (note that i am using 0x21f8a2b0 because the data region we are
 pivoting from starts at 0x21f8a2a0 + 0x10) 
