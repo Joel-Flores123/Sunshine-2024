@@ -1,3 +1,4 @@
+## Intro:
 This is a heap challenge where you are asked a size to malloc a chunk. (It is important to note that malloc is called twice in this program)
 You are allowed to write to any address relative to this chunk you are given. 
 You can either index forwards or backwards. 
@@ -7,6 +8,7 @@ The idea is to index backwards far enough to write into the tcache entries and a
 Where the entry will be the return address. Counts will only be written to so signify that there is a tcache entry.
 After the entry is written to the next time we do a malloc it will return the return address.
 
+## Decomp
 Here is a decompilation of the program that only includes the relevant functions 
 
 ```
@@ -94,10 +96,13 @@ As you can see we have a win function, so the goal is to return to the win funct
     int64_t* rax_20 = malloc(bytes);
 ```
 
+## TCache
 We can also see that we have 2 chances at input before we call into the next malloc, which means that we can write to the tcache entry and the tcache count 
 in time for the next malloc and have it return an arbitrary address that we can write to.
 
 ![tache](pics/tcache.png)
+
+
 If we take a look at gdb we can see that our allocated chunk is at 0x21f8a2a0 (size 0x20), we know this because we 
 allocated 0x10 size and malloc also adds about 0x10 for metadata like previous size and chunk size. We also know that
 0x21f89000 is the base of the heap and from the image we can see that the tcache counts start at 0x21f89010 and the tcache 
