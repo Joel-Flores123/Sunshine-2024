@@ -111,8 +111,12 @@ entries start at 0x21f89090 after some trial and error.![tache](pics/tachetable.
 So first we do some math to figure out the negative offsets we need (note that i am using 0x21f8a2b0 because the data region we are
 pivoting from starts at 0x21f8a2a0 + 0x10) 
 
+
+```
+#these are negative offsets since we are going backwards into the heap
 tcache count offset = (0x21f8a2b0(our address) - 0x21f89010(tcache count address)) / 8 = 0x254 
 tcache entry offset = (0x254 - ((0x21f89090 - 0x21f89010) / 8))  = 0x244
+```
 
 Now that we know where to write to manipulate the tcache we can trick the program into mallocing the return address
 which we can calculate from the address we are given when we begin the program.
