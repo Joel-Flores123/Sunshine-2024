@@ -14,11 +14,15 @@ Another thing to note is that when we go out of bounds we leak a byte in hex at 
 Which allows us to arbitrarily read. As we can see we put an offset of 300 in this example which should be somewhere in our
 board and the hex printed out what 2e which is "." in ascii. Which matches up with what we have on our board. (note that the
 enemy array is located before our array which is why I can do offset 300 and hit my array). 
+
+
 ![proof](arbreadproof.png)
 
 ## The leak 
 
 ![enemyboard](pics/enemyboardaddr.png)
+
+
 Knowing we can arbitrarily read any byte we can locate an offset where an address resides. I ended up finding the address of main
 by using an offset of 728 which I found by going into gdb and finding the base address of the enemy ship, and looking into the stack to see 
 how far it was from main after both my board and the enemy board were initialized. Quick note, because we know that the enemy board is filled with
