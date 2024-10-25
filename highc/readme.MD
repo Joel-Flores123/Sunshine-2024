@@ -16,7 +16,7 @@ board and the hex printed out what 2e which is "." in ascii. Which matches up wi
 enemy array is located before our array which is why I can do offset 300 and hit my array). 
 
 
-![proof](arbreadproof.png)
+![proof](pics/arbreadproof.png)
 
 ## The leak 
 
