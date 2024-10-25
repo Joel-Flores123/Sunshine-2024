@@ -20,7 +20,7 @@ enemy array is located before our array which is why I can do offset 300 and hit
 
 ## The leak 
 
-![enemyboard](pics/enemyboardaddr.png)
+<div>![enemyboard](pics/enemyboardaddr.png) <div>
 
 
 Knowing we can arbitrarily read any byte we can locate an offset where an address resides. I ended up finding the address of main
